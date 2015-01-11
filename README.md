@@ -1,4 +1,4 @@
-# bmw
+# BMW HealthKit
 Hack the drive
 BMW Healthkit is a toolkit that provides you information about the status of your bmw car.
 It also provides information about the nearest electric charging station whenever the battery level goes below the 25% charge level.

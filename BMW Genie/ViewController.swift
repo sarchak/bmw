@@ -37,7 +37,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         var timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         locationManager.requestAlwaysAuthorization()
-        println("Request when in use authorization")
     }
 
 
@@ -119,7 +118,6 @@ class ViewController: UIViewController {
                             self.presented = true
                             let alertViewController = UIAlertController(title: "Low Battery", message: "Range is 40miles", preferredStyle: .Alert)
                             let okButton =  UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-                                println("Ok Pressed")
                             })
                             let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                             alertViewController.addAction(okButton)
@@ -136,10 +134,12 @@ class ViewController: UIViewController {
                             if (jsonResult.objectForKey("DiagnosticCodes") != nil) {
                                 let dg = jsonResult.objectForKey("DiagnosticCodes") as NSDictionary
                                 let code = (dg.objectForKey("Codes") as NSArray)[0] as String
-                                println(code)
-                                if (code == "PB0118") {
+                                if (code == "P0118") {
                                     self.diagnosticsView.backgroundColor = self.getColor(10)
-                                    self.dLabel.text = "Engine Coolant Temperature Sensor 1 Circuit High"
+                                    self.dLabel.text = "Engine Coolant Temperature High"
+                                } else {
+                                    self.diagnosticsView.backgroundColor = self.getColor(90)
+                                    self.dLabel.text = "Good"
                                 }
                             } else {
                                 println("XX its nil")

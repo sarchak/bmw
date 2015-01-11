@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+
 
 class ViewController: UIViewController {
 
@@ -34,20 +36,29 @@ class ViewController: UIViewController {
 
     @IBAction func takeMeThere(sender: AnyObject) {
         println("Take me there")
+        let latitude = 37.566150665283200
+        let longitude = -122.324226379394530
+        let placemark  = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Charing Station"
+        let options = [
+                MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving,
+                MKLaunchOptionsShowsTrafficKey: false
+            ]
+        mapItem.openInMapsWithLaunchOptions(options)
     }
-    func getColor(value : Int, type : String) -> UIColor {
+    func getColor(value : Int) -> UIColor {
         let color = UIColor.greenColor()
-        if(type == "FuelLevel"){
-            if(value > 75) {
-                return green
-            } else if(value > 25 && value < 75) {
-                return orange
-            } else if( value < 25) {
-                return red
-            } else {
-                return green
-            }
+        if(value > 75) {
+            return green
+        } else if(value > 25 && value < 75) {
+            return orange
+        } else if( value < 25) {
+            return red
+        } else {
+            return green
         }
+
         return color
     }
     
@@ -64,13 +75,13 @@ class ViewController: UIViewController {
                 var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(objectData!, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
 
                 var level = 100
-                if( jsonResult.objectForKey("BatteryLevel") != nil) {
-                    level = jsonResult.objectForKey("BatteryLevel") as Int
+                if( jsonResult.objectForKey("LastBatteryLevel") != nil) {
+                    level = jsonResult.objectForKey("LastBatteryLevel") as Int
                 }
 
-//                println("Battery level : \(level)")
+                println("Battery level : \(level)")
                 let fuellevel = jsonResult.objectForKey("FuelLevel") as Int
-//                println("Fuel level : \(fuellevel)")
+                println("Fuel level : \(fuellevel)")
 
 
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -86,8 +97,9 @@ class ViewController: UIViewController {
                             self.presentViewController(alertViewController, animated: true, completion: nil)
                         }
                         UIView.animateWithDuration(1.0, animations: { () -> Void in
+                            self.batteryView.backgroundColor = self.getColor(level)
+                            self.fuelView.backgroundColor = self.getColor(fuellevel)
                             
-                            self.fuelView.backgroundColor = self.getColor(fuellevel, type: "FuelLevel")
                         })
                     })
 

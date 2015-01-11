@@ -210,14 +210,17 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="27" y="48" width="164" height="41"/>
+                                            <rect key="frame" x="27" y="14" width="164" height="41"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Good" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bO-Bi-sBe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Good" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bO-Bi-sBe">
                                         <rect key="frame" x="226" y="48" width="78" height="41"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="29" y="48" width="363" height="41"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.6588235294" green="0.84313725490000002" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -292,9 +295,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="BMW i3" id="X8a-mS-aqQ"/>
                     <connections>
+                        <outlet property="batteryLabel" destination="Meo-Vj-1Mt" id="p6W-y2-g8s"/>
                         <outlet property="batteryView" destination="x1v-Ey-Zh2" id="OxB-4u-M18"/>
+                        <outlet property="dLabel" destination="1bO-Bi-sBe" id="RWr-HY-yOJ"/>
                         <outlet property="diagnosticsView" destination="Zvr-Ye-lOS" id="Q6N-gM-CDa"/>
+                        <outlet property="fuelLabel" destination="3cS-Rl-gRX" id="aBS-0c-cHB"/>
                         <outlet property="fuelView" destination="pm3-pU-D8c" id="uRH-Yl-WJR"/>
+                        <outlet property="mapView" destination="b7n-2o-d9B" id="yjP-1e-Ili"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
